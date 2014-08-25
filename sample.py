@@ -1,6 +1,4 @@
 from matplotlib import pyplot as plt
-import numpy as np
-
 
 class LineBuilder:
     def __init__(self, line):
@@ -19,14 +17,8 @@ class LineBuilder:
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
-
 ax.set_title('click to build line segments')
-im = plt.imread("map.png");
-plt.imshow(im);
-ax.autoscale(False)
-
-line = ax.plot(0,0)
-print line
+line, = ax.plot([0], [0])  # empty line
 linebuilder = LineBuilder(line)
 
 plt.show()
