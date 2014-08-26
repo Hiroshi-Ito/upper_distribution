@@ -19,10 +19,7 @@ plt.grid(True)
 houseMap.autoscale(False)
 
 # plot potential field
-x = np.random.randn(8873)
-y = np.random.randn(8873)
-heatmap, xedges, yedges = np.histogram2d(x, y, bins=50)
-plt.imshow(heatmap, extent=[0, ymax, 0, xmax], alpha=0.2)
+#plt.imshow(heatmap, extent=[0, ymax, 0, xmax], alpha=1)
 #plt.axvspan(300, 400, facecolor='r', alpha=0.5)
 
 
