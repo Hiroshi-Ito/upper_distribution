@@ -16,7 +16,8 @@ class arm_class(object):
 
 
     def calc_invkinematicks(self, x, y):
-        print x,y
+        print "calc_invkinematicks"
+        #print x,y
         #print self.x,self.y
         numer = math.sqrt( 4*L1*L1*L2*L2 - ((x*x + y*y) - (L1*L1 + L2*L2))*((x*x + y*y) - (L1*L1 + L2*L2)))
         denom = 2*L1*L1 + (x*x + y*y) - (L1*L1 + L2*L2)
@@ -30,6 +31,7 @@ class arm_class(object):
         self.plt_trj()
 
     def plt_trj(self):
+        print "plt trj"
         # Calce each Position using kinematicks
         self.x[0] = L1*math.cos(self.angle[0]);
         self.y[0] = L1*math.sin(self.angle[0]);
@@ -38,5 +40,6 @@ class arm_class(object):
         print self.x, self.y
         self.pt_plot.set_xdata(self.x)
         self.pt_plot.set_ydata(self.y)
-
         #print x1,y1,x2,y2
+
+        

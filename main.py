@@ -3,17 +3,29 @@ from matplotlib import gridspec as gs
 import numpy as np
 import clicker
 import arm
+import field
 
 plt.figure(num=None, figsize=(8, 6), dpi=100, facecolor='w', edgecolor='k')
 gs = gs.GridSpec(2, 4)
 gs.update(left=0.05, right=0.98, hspace=0.3)
 
+
 houseMap = plt.subplot(gs[:, :-1])
 houseMap.set_title('BMI house layout at experiment room')
 im = plt.imread("map.png");
-plt.imshow(im);
+xmax, ymax = im.shape[:2]
+plt.imshow(im, extent=[0, ymax, 0, xmax])
 plt.grid(True)
 houseMap.autoscale(False)
+
+# plot potential field
+x = np.random.randn(8873)
+y = np.random.randn(8873)
+heatmap, xedges, yedges = np.histogram2d(x, y, bins=50)
+plt.imshow(heatmap, extent=[0, ymax, 0, xmax], alpha=0.2)
+#plt.axvspan(300, 400, facecolor='r', alpha=0.5)
+
+
 
 leftArm = plt.subplot(gs[:-1, -1])
 plt.axis('scaled')
@@ -33,8 +45,11 @@ rightArm.set_title('rightArm')
 
 
 cc = clicker.clicker_class(houseMap)
-am = arm.arm_class(leftArm)
-am.calc_invkinematicks(x=0, y=72)
+larm = arm.arm_class(leftArm)
+rarm = arm.arm_class(rightArm)
+
+#larm.calc_invkinematicks(x=0, y=72)
+#rarm.calc_invkinematicks(x=72, y=0)
 
 
 plt.show()
