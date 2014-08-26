@@ -3,7 +3,7 @@ import numpy as np
 
 class clicker_class(object):
     def __init__(self, ax, pix_err=1):
-        print "init"
+        print "clicker init"
         self.canvas = ax.get_figure().canvas
         self.cid = None
         self.pt_lst = []
@@ -72,7 +72,7 @@ class clicker_class(object):
         if(len(x) > 1):
             print x,y,x[0],x[1]
             #ax.arrow(x[0],y[0],x[1]-x[0],y[1]-y[0],  fc="k", ec="k", head_width=10, head_length=20)
-            ax.quiver(x[0],y[0],x[1]-x[0],y[1]-y[0] ,angles='xy',scale_units='xy',scale=1)
+            #ax.quiver(x[0],y[0],x[1]-x[0],y[1]-y[0] ,angles='xy',scale_units='xy',scale=1)
         self.pt_plot.set_xdata(x)
         self.pt_plot.set_ydata(y)
         self.canvas.draw()
@@ -82,16 +82,3 @@ class clicker_class(object):
         '''Returns the clicked points in the format the rest of the
         code expects'''
         return np.vstack(self.pt_lst).T
-
-
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.set_title('BMI house layout at experiment room')
-im = plt.imread("map.png");
-plt.imshow(im);
-ax.autoscale(False)
-
-
-cc = clicker_class(ax)
-
-plt.show()
